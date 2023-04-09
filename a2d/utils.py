@@ -26,7 +26,7 @@ from __future__ import annotations
 
 import re
 import io
-from typing import Any, Dict
+from typing import Any, Dict, Union
 
 import requests
 import discord
@@ -50,7 +50,7 @@ def validate_thread_url(url: str) -> Dict[str, Any]:
         'success': False,
     }
 
-def validate_webhook_url(url: str) -> Dict[str, Any]:
+def validate_webhook_url(url: str) -> Dict[str, Union[bool, str]]:
     """Validate a Discord webhook url"""
     m = re.search(
         WEBHOOK_RE, url

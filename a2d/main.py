@@ -87,7 +87,7 @@ def cmain(
     thread_title = posts[0]['semantic_url']
     filtered = filter_posts(skip_comments=skip_comments, skip_files=skip_files, posts=posts)
 
-    # map of thread number (no) to message (WebhookMessage)
+    # map of thread number (no) to message (SyncWebhookMessage)
     com_map: Dict[int, discord.SyncWebhookMessage] = {}
 
     for post in track(filtered):
@@ -109,7 +109,7 @@ def cmain(
                     fmt = f'>>>{replyto}\n{normify_comment(com)}'[:2000]
                 else:
                     replyto_hyperlink = f'[>>{replyto}]({com_map[replyto].jump_url})'
-                    fmt = f'{replyto_hyperlink}{normify_comment(com)}'[:2000]
+                    fmt = f'{replyto_hyperlink}\n{normify_comment(com)}'[:2000]
 
                 sent = wh.send(
                     content=fmt,
@@ -120,15 +120,16 @@ def cmain(
             # If it reaches here, then it's a comment without a reply
             else:
                 sent = wh.send(
-                    content=str(post.get('com'))[:2000],
+                    content=normify_comment(com)[:2000],
                     username=f'{post["name"]} #{no}',
                     wait=True,
+                    suppress_embeds=True
                 )
             com_map[no] = sent
 
         # If the comment has an attachment
         elif tim and filename and ext is not None:
-            com = post.get('com')
+            com = post.get('com') # May also have a comment
 
             if com and replyto:
                 fmt = f'>>>{replyto}\n{normify_comment(com)}'[:2000]
@@ -147,6 +148,7 @@ def cmain(
                     ext=ext
                 ),
                 wait=True,
+                suppress_embeds=True
             )
             com_map[no] = sent
 
