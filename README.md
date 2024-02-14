@@ -1,15 +1,5 @@
 <h1 align="center"> <code>Archive2Discord</code> </h1>
-<h4 align="center"> Archive your favourite 4Chan thread 2 Discord </h4>
-
------
-
-<p align="center">
-    <i>Ever had that moment where you wanted to look up a specific thread that had been archived but couldn't find it? Or you wanted to view the attachments in an archived thread, but it got deleted? Well, say no more!</i>
-<p>
-
------
-
-<h2 align="center"> Demo </h2>
+<h4 align="center"> Archive your favourite 4Chan thread 2 Discord before it gets deleted</h4>
 
 [a2d_demo.mp4](https://user-images.githubusercontent.com/70033559/230702359-7722cf06-8ab0-457b-8ae0-44c017f5deb4.mp4)
 
@@ -20,7 +10,6 @@ pip install -U a2d
 ```
 
 ## Usage
-This guide assumes that you know what Discord is and how to use it.
 
 ### Required URLs
 First, you'll need the URL of the thread you want to archive (e.g: https://boards.4chan.org/wg/thread/7977599). After that, [create a Discord webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) and copy the URL.
@@ -58,8 +47,3 @@ Use this to set a delay when archiving to Discord
 ```console
 a2d thread_url webhook_url --delay 5
 ```
-
-## Contributing
-I have only tested this script with a handful of threads. Feel free to open an issue or PR to report/fix any bugs.
-
-If you have any ideas or improvements, feel free to suggest it too by opening an issue.
