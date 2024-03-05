@@ -99,7 +99,7 @@ def cmain(
 
         # If the comment doesn't have an attachment
         if tim is None:
-            com = post['com']
+            com = post.get('com', '')
             # Check if the comment is a reply or not
             if replyto:
                 # Hyperlinks don't work if either --skip-files or --skip-comments flag
